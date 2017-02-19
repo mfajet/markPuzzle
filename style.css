@@ -1,0 +1,38 @@
+#game {
+    display: flex;
+    flex-direction: column;
+}
+#row1, #row2, #row3 {
+    display: inline-flex;
+}
+#row1 .col1 {
+        background-color: #324efe;
+}
+#row1 .col2 {
+        background-color: red;
+}
+#row1 .col3 {
+        background-color: green;
+}
+#row1 .col1 {
+        background-color: gray;
+}
+#row2 .col2 {
+        background-color: purple;
+}
+#row2 .col3 {
+        background-color: aqua;
+}
+#row3 .col1 {
+        background-color: magenta;
+}
+#row3 .col2 {
+        background-color: blue;
+}
+#row3 .col3 {
+        background-color: black;
+}
+.col1, .col2, .col3 {
+    width:200px;
+    height:200px;
+}
