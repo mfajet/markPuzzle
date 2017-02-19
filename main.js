@@ -1,13 +1,18 @@
-var faceNum = Math.floor(Math.random()*61 + 1);
-    if (faceNum == 13 || faceNum ==31){
-        faceNum++;
-    }
-var image = new Image();
-image.onload = cutImageUp;
-image.src = '/markFaces/face' + faceNum + '.PNG';
+var image;
+function start(){
+    var faceNum = Math.floor(Math.random()*61 + 1);
+        if (faceNum == 13 || faceNum ==31){
+            faceNum++;
+        }
+    image = new Image();
+    imagePieces =[];
+    image.src = '/markFaces/face' + faceNum + '.PNG';
+    image.onload = cutImageUp;
+
+}
 var white = new Image();
-
-
+var solved = false;
+start();
 document.onkeydown = checkKey;
 var emptyBox = 1;
 function checkKey(e) {
@@ -51,13 +56,14 @@ var widthOfOnePiece;
 numColsToCut = 3;
 numRowsToCut = 3;
 var whiteURL;
+var imagePieces = [];
+
 function cutImageUp() {
     widthOfOnePiece =this.width / 3;
     heightOfOnePiece=this.height / 3;
     var emptyPic = document.getElementById('1');
     emptyPic.style.width = "100px";
     emptyPic.style.height = "auto";
-    var imagePieces = [];
         for(var y = 0; y < numRowsToCut; y++) {
             for(var x = 0; x < numColsToCut; x++) {
 
@@ -108,4 +114,27 @@ function cropWhite() {
             emptyPic.style.height = "auto";
 
 
+}
+function solve(){
+    for (var i = 1; i < 10; i++){
+        var anImageElement = document.getElementById(i);
+        anImageElement.src = imagePieces[i-1];
+        anImageElement.style.width = "100px"
+        anImageElement.style.height= "auto";
+    }
+}
+
+var butt = document.getElementById('butt');
+butt.onclick = solveOrReplay;
+function solveOrReplay(){
+    console.log("DSFsdf");
+    if (solved){
+        solved = false;
+        start();
+        butt.firstChild.data = "Solve"
+    }else{
+        solved = true;
+        solve();
+        butt.firstChild.data = "ANOTHER FACE!"
+    }
 }
