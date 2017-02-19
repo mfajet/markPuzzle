@@ -1,4 +1,6 @@
 var image;
+var used =[];
+
 function start(){
     var faceNum = Math.floor(Math.random()*61 + 1);
         if (faceNum == 13 || faceNum ==31){
@@ -61,6 +63,7 @@ var whiteURL;
 var imagePieces = [];
 
 function cutImageUp() {
+    used = [];
     widthOfOnePiece =this.width / 3;
     heightOfOnePiece=this.height / 3;
     var emptyPic = document.getElementById('1');
@@ -81,7 +84,6 @@ function cutImageUp() {
     // imagePieces now contains data urls of all the pieces of the image
 
     // load one piece onto the page
-    var used =[];
     for (var i = 0; i < 9; i++) {
         var r = Math.floor(Math.random() * 9);
         while(used.indexOf(r)!=-1){
@@ -133,7 +135,7 @@ function solveOrReplay(){
     if (solved){
         solved = false;
         start();
-        butt.firstChild.data = "Solve"
+        butt.firstChild.data = "Solve it!"
     }else{
         solved = true;
         solve();
@@ -143,9 +145,9 @@ function solveOrReplay(){
 
 function isSolved(){
     solved = true;
-    for (var i = 2; i <=9; i++) {
+    for (var i = 1; i <=9; i++) {
         var img = document.getElementById(i);
-        if(img.src != imagePieces[i-1]){
+        if(used[0] != i && img.src != imagePieces[i-1]){
             solved = false
         }
     }
