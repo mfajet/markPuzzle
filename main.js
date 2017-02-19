@@ -1,6 +1,10 @@
+var faceNum = Math.floor(Math.random()*61 + 1);
+    if (faceBum == 13 || faceNum ==31){
+        faceNum++;
+    }
 var image = new Image();
 image.onload = cutImageUp;
-image.src = '/face7.PNG';
+image.src = '/markFaces/face' + faceNum + '.PNG';
 var white = new Image();
 white.onload = cropWhite;
 white.src ="/white.PNG";
