@@ -8,6 +8,7 @@ function start(){
     imagePieces =[];
     image.src = '/markFaces/face' + faceNum + '.PNG';
     image.onload = cutImageUp;
+    emptyBox = 1;
 
 }
 var white = new Image();
@@ -50,6 +51,7 @@ function checkKey(e) {
         to.src=fromSrc;
         from.style.width = "100px";
     }
+    isSolved();
 }
 var heightOfOnePiece;
 var widthOfOnePiece;
@@ -136,5 +138,20 @@ function solveOrReplay(){
         solved = true;
         solve();
         butt.firstChild.data = "ANOTHER FACE!"
+    }
+}
+
+function isSolved(){
+    solved = true;
+    for (var i = 2; i <=9; i++) {
+        var img = document.getElementById(i);
+        if(img.src != imagePieces[i-1]){
+            solved = false
+        }
+    }
+    if(solved){
+        solve();
+        butt.firstChild.data = "ANOTHER FACE!"
+        alert("Congratulations! Click OK to see my beautiful face!");
     }
 }
