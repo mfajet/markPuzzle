@@ -1,13 +1,12 @@
 var faceNum = Math.floor(Math.random()*61 + 1);
-    if (faceBum == 13 || faceNum ==31){
+    if (faceNum == 13 || faceNum ==31){
         faceNum++;
     }
 var image = new Image();
 image.onload = cutImageUp;
 image.src = '/markFaces/face' + faceNum + '.PNG';
 var white = new Image();
-white.onload = cropWhite;
-white.src ="/white.PNG";
+
 
 document.onkeydown = checkKey;
 var emptyBox = 1;
@@ -39,8 +38,6 @@ function checkKey(e) {
        }
     }
     if(moveTo != emptyBox){
-        console.log(moveTo);
-        console.log(emptyBox);
         var from = document.getElementById(emptyBox);
         var to = document.getElementById(moveTo);
         var fromSrc = from.src;
@@ -92,7 +89,8 @@ function cutImageUp() {
         anImageElement.style.width = "100px"
         anImageElement.style.height= "auto";
     }
-
+    white.onload = cropWhite;
+    white.src ="/white.PNG";
 }
 
 function cropWhite() {
@@ -103,6 +101,7 @@ function cropWhite() {
             var context = canvas.getContext('2d');
             context.drawImage(white, widthOfOnePiece, heightOfOnePiece, widthOfOnePiece, heightOfOnePiece, 0, 0, canvas.width, canvas.height);
             whiteURL = (canvas.toDataURL());
+            console.log(whiteURL);
             var emptyPic = document.getElementById('1');
             emptyPic.src=whiteURL;
             emptyPic.style.width = "100px";
